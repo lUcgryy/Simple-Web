@@ -1,0 +1,30 @@
+<%- include('header') %>
+
+<% if (locals.vip) { %>
+<h2>Bạn đã là thành viên VIP rồi</h2>
+<p>Mỗi lần bạn mua hàng, bạn sẽ được giảm giá 30%</p>
+<p>Thời điểm hết hạn: <%= expire %> </p>
+<% } else { %>  
+<h2>Đăng kí tài khoản VIP</h2>
+<p>Khi bạn có tài khoản VIP, bạn sẽ được giảm giá 30% cho tất cả các món hàng</p>
+<table>
+    <tr>
+        <th>Loại</th>
+        <th>Giá</th>
+    </tr>
+    <%for(var i=0;i<vips.length;i++){-%>
+    <form action="/vip" method="post">
+        <tr>
+            <th><%=vips[i].type%></th> 
+            <th><%=vips[i].price%></th>
+            <th><input type="submit" value="Đăng kí"></th>
+        </tr>
+        <input type="hidden" name="id" value="<%=vips[i].id%>">
+    </form>
+    <%}-%>
+</table>
+<% } %>
+<% if (locals.noti) { -%>
+<p><%=noti%> </p>
+<% }-%>  
+<%- include('footer') %>

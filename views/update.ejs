@@ -1,0 +1,15 @@
+<%-include('header')-%>
+
+<div align="center">
+	<form action="/update/<%= id%>" method="post">
+		<h1>Nạp tiền</h1>
+		<p><input type="text" name="creditCard" placeholder="Thẻ ngân hàng">
+		<p><input type="text" name="money" placeholder="Tiền"></p>
+		<input type="submit" value="Nạp tiền">
+	</form>
+	<% if (locals.noti) {-%>
+	<p><%=noti%></p>
+	<% }-%>
+</div>
+
+<%-include('footer')-%>

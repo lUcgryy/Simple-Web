@@ -1,0 +1,15 @@
+<%- include('header')-%>
+
+<h2>Nhập hàng</h2>
+<form action="/admin/items/add" method="post">
+    <p><input type="text" name="name" placeholder="Tên mặt hàng" size="100" required></p>
+    <p><input type="text" name="amount" placeholder="Số lượng" size="100" required></p>
+    <p><input type="text" name="description" placeholder="Mô tả" size="100"></p>
+    <p><input type="text" name="price" placeholder="Giá" size="100" required></p>
+    <input type="submit" value="Nhập hàng">
+</form>
+<% if (locals.noti) { -%>
+    <p><%=noti%> </p>
+<% }-%> 
+
+<%- include('footer')-%>

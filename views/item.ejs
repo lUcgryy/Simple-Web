@@ -1,0 +1,32 @@
+<%-await include('header')-%>
+<h2>Cửa hàng hoa quả</h2>
+<table>
+    <tr>
+        <th>Mặt hàng</th>
+        <th>Số lượng</th>
+        <th>Mô tả</th>
+        <th>Giá</th>
+        <th>Số lượng mua</th>
+    </tr>
+    <%for(var i=0;i<items.length;i++){-%>
+    <form action="/" method="post">
+    <tr>
+        <th><%=items[i].name%></th> 
+        <th><%=items[i].amount %></th>
+        <th><%=items[i].description%></th>
+        <% if (locals.vip) { %>
+        <th><del><%=items[i].price%></del> <%=items[i].price*0.7%></th>
+        <% } else { %>       
+        <th><%=items[i].price%></th>
+        <% } %>
+        <th><input type="text" name="quantity" placeholder="Số lượng mua" size="10"></th>
+        <th><input type="submit" value="Mua"></th>
+    </tr>
+    <input type="hidden" name="id" value="<%=items[i].id%>">
+</form>    
+<%}-%>
+</table>
+<% if (locals.noti) { -%>
+<p><%=noti%> </p>
+<% }-%>     
+<%-await include('footer')-%>

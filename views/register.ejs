@@ -1,0 +1,19 @@
+<%-include('header')-%>
+
+<script src="https://www.google.com/recaptcha/api.js?hl=vi" async defer></script>
+<div align="center">
+	<h1>Đăng kí</h1>
+	<form action="/register" method="post">
+		<p><input type="text" name="email" placeholder="Email" required></p>
+		<p><input type="text" name="username" placeholder="Tên đăng nhập" required></p>
+		<p><input type="password" name="password" placeholder="Mật khẩu" required></p>
+		<p><input type="password" name="confirmPassword" placeholder="Xác nhận mật khẩu" required></p>
+		<div class="g-recaptcha" data-sitekey="6LduDPUiAAAAAEF7Ob98kBYiTprYKhQxN3fP5s8M"></div>
+		<input type="submit" value="Submit">
+	</form>
+	<% if (locals.noti) {-%>
+	<p><%=noti%></p>
+	<% }-%>
+</div>
+
+<%-include('footer')-%>

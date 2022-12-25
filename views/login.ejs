@@ -1,0 +1,19 @@
+<%-include('header')-%>
+
+<script src="https://www.google.com/recaptcha/api.js?hl=vi" async defer></script>
+<div align="center">
+	<h1>Đăng nhập</h1>
+	<form action="/login" id="login" method="post">
+		<p><input type="text" name="username" placeholder="Tên đăng nhập" required></p>
+		<p><input type="password" name="password" placeholder="Mật khẩu" required></p>
+		<input type="checkbox" name="remember"> Ghi nhớ đăng nhập
+		<div class="g-recaptcha" data-sitekey="6LduDPUiAAAAAEF7Ob98kBYiTprYKhQxN3fP5s8M"></div>
+		<input type="submit" value="Submit">
+	</form>
+	<a href="/register">Đăng kí</a>
+	<% if (locals.noti) {-%>
+		<p><%=noti%></p>
+	<% }-%>	
+</div>
+
+<%-include('footer')-%>

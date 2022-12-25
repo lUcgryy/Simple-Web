@@ -1,0 +1,23 @@
+<%- include('header') -%>
+
+<h1>Danh sách mặt hàng</h1>
+<table>
+    <tr>
+        <th>Tên mặt hàng</th>
+        <th>Số lượng</th>
+        <th>Mô tả</th>
+        <th>Giá</th>
+    </tr>
+    <% for (var i = 0; i < items.length; i++) { -%>
+    <tr>
+        <th><%= items[i].name %></th>
+        <th><%= items[i].amount %></th>
+        <th><%= items[i].description %></th>
+        <th><%= items[i].price %></th>
+        <th><a href="/admin/items/update/<%= items[i].id %>">Cập nhật thông tin</a></th>
+        <th><a href="/admin/items/remove/<%= items[i].id %>">Xóa mặt hàng</a></th>
+    </tr>
+    <% } -%>
+</table>
+
+<%- include('footer') -%> 

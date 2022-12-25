@@ -1,0 +1,34 @@
+<%- include('header')-%>
+
+<h2>Xóa user</h2>
+<table>
+    <tr>
+        <th></th>
+        <th>Họ và tên</th>
+        <th>Tên đăng nhập</th>
+        <th>Email</th>
+        <th>SĐT</th>
+        <th>Vai trò</th>
+        <th>Tiền</th>
+    </tr>
+    <%for(var i=0;i<users.length;i++){-%>
+    <form action="/admin/users/remove" method="post">
+    <tr>
+        <th><img src="<%= users[i].avatar%>" alt="avatar" width="50px" height="50px"></th>
+        <th><%=users[i].name%></th> 
+        <th><%=users[i].username%></th>
+        <th><%=users[i].email%></th> 
+        <th><%=users[i].sdt%></th> 
+        <th><%=users[i].role %></th>
+        <th><%=users[i].money%></th> 
+        <th><input type="submit" value="Xóa"></th>
+    </tr>
+    <input type="hidden" name="id" value="<%=users[i].id%>">
+</form>
+    <%}-%>
+</table>
+<% if (locals.noti) { -%>
+    <p><%=noti%> </p>
+<% }-%> 
+
+<%- include('footer')-%> 

@@ -1,0 +1,34 @@
+<%- include('header') %> 
+
+<h2>Thông tin mặt hàng</h2>
+<% if (locals.item) { %>
+<table>
+    <tr>
+        <th>Tên mặt hàng</th>
+        <th>Số lượng</th>
+        <th>Mô tả</th>
+        <th>Giá</th>
+    </tr>
+    <tr>
+        <th><%= item.name %></th>
+        <th><%= item.amount %></th>
+        <th><%= item.description %></th>
+        <th><%= item.price %></th>
+    </tr>
+</table> 
+<h2>Cập nhật mặt hàng</h2>
+<form action="/admin/items/update/<%= item.id %>" method="post">
+    <p><input type="text" name="name" placeholder="Tên mặt hàng mới" size="100"></p>
+    <p><input type="text" name="amount" placeholder="Số lượng" size="100"></p>
+    <p><input type="text" name="description" placeholder="Mô tả" size="100"></p>
+    <p><input type="text" name="price" placeholder="Giá" size="100"></p>
+    <input type="hidden" name="id" value="<%= item.id %>">
+    <input type="submit" value="Cập nhật">
+<% } else { %>
+<p>Không tìm thấy mặt hàng</p>
+<% } %>
+<% if (locals.noti) { %>
+    <p><%=noti%> </p>
+<% } %> 
+
+<%- include('footer') %>

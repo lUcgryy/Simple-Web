@@ -1,0 +1,24 @@
+<%- include('header') %> 
+
+<script src="https://www.google.com/recaptcha/api.js?hl=vi" async defer></script>
+<h2>Chuyển tiền</h2>
+<h3>Thông tin tài khoản người nhận</h3>
+<form action="/transfer/" method="post">
+    <p><input type="text" name="name" placeholder="Tên đăng nhập hoặc email" size=30px required></p>
+    <p><input type="submit" value="Tìm kiếm"></p>
+</form>
+<% if (locals.found) { %>
+<h3>Họ và tên người nhận: <%= userData.name %> </h3>
+<form action="/transfer/confirm/" method="post">
+    <p><input type="text" name="money" placeholder="Số tiền" size=30px required></p>
+    <p><input type="text" name="note" placeholder="Nội dung" size=30px></p>
+    <input type="hidden" name="id" value="<%= userData.id %>">
+    <div class="g-recaptcha" data-sitekey="6LduDPUiAAAAAEF7Ob98kBYiTprYKhQxN3fP5s8M"></div>
+    <input type="submit" value="Chuyển tiền">
+</form>
+<% } %>
+<% if (locals.noti) { %>
+<p><%=noti%> </p>
+<% } %>  
+
+<%- include('footer') %>

@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.11.1-rc
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4  --collation-server=utf8mb4_unicode_520_ci
+    restart: unless-stopped
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/0_init.sql
+      - ./maria:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: MyDB
+      MYSQL_USER: lucgryy
+      MYSQL_PASSWORD: 123456
+    networks:
+      - db-network
+  web:
+    build: .
+    restart: unless-stopped
+    # container_name: node
+    # ports:
+    #   - 3000:3000
+    #   - 3443:3443
+    depends_on:
+      - db
+    networks:
+      - db-network
+    volumes:
+      - .:/usr/src/app
+    environment:
+      SITE_KEY: 6LduDPUiAAAAAEF7Ob98kBYiTprYKhQxN3fP5s8M
+      SECRET_KEY: 6LduDPUiAAAAAMSZqZjRWV_0XCdozT6WA11vUvh7
+      DB_HOST: db
+      DB_USER: lucgryy
+      DB_PASSWORD: 123456  
+      DB_DATABASE: MyDB
+      DB_PORT: 3306
+      DB_CHARSET: utf8mb4
+  proxy:
+    image: nginx:stable
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./certs:/etc/ssl/certs
+    networks:
+      - db-network
+networks:
+  db-network:

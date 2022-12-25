@@ -1,0 +1,14 @@
+<%- include('header') %>
+
+<h2>Lịch sử giao dịch</h2>
+<% if (locals.history) { %> 
+<% for (var i = 0; i < history.length; i++) { %>
+    <% if (history[i].senderId === id) { %>
+    <p>Bạn đã gửi <b><%= history[i].money %></b> cho <b><%= users[i] %></b> vào lúc <%= history[i].time %> với nội dung là <%= history[i].note %></p>
+    <% } else { %>
+    <p>Bạn đã nhận <b><%= history[i].money %></b> từ <b><%= users[i] %></b> vào lúc <%= history[i].time %> với nội dung là <%= history[i].note %></p>
+    <% } %>   
+<% } %> 
+<% } %>
+
+<%- include('footer') %>

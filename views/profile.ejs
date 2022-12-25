@@ -1,0 +1,47 @@
+<%- include('header')%> 
+
+<h2>Thông tin của bạn</h2>
+<h3>Ảnh đại diện</h3>
+<% if (locals.userData) { %>
+<img src="<%=  userData.avatar %> " alt="avatar" width="100px" height="100px">
+<form action="/profile/upload/<%= userData.id %>" name="avatar" method="post" enctype="multipart/form-data">
+    <p><input type="file" name="avatar" accept="image/*" lang="vi"></p>
+    <input type="submit" value="Cập nhật ảnh đại diện">
+</form>
+<table>
+    <tr>
+        <th>Họ và tên</th>
+        <th>Tên đăng nhập</th>
+        <th>Email</th>
+        <th>Tiền</th>
+        <th>Số điện thoại</th>
+    </tr>
+    <tr>
+        <th><%= userData.name %></th>
+        <th><%= userData.username %></th>
+        <th><%= userData.email %></th>
+        <th><%= userData.money %></th>
+        <th><%= userData.sdt %></th>
+    </tr>
+</table>
+<h2>Cập nhật thông tin</h2>
+<form action="/profile/update/<%= userData.id %>" method="POST">
+    <p><input type="text" name="name" placeholder="Họ và tên đầy đủ"></p>
+    <p><input type="text" name="email" placeholder="Email"></p>
+    <p><input type="text" name="sdt" placeholder="Số điện thoại"></p>
+    <input type="hidden" name="id" value="<%= userData.id %>">
+    <input type="submit" value="Cập nhật">
+</form>
+<h2>Thay đổi mật khẩu</h2>
+<form action="/profile/updatepass/<%= userData.id %>" method="POST">
+    <p><input type="password" name="password" placeholder="Mật khẩu cũ" required></p>
+    <p><input type="password" name="newPassword" placeholder="Mật khẩu mới" required></p>
+    <p><input type="password" name="confirmNewPassword" placeholder="Nhập lại mật khẩu mới" required></p>
+    <input type="hidden" name="id" value="<%= userData.id %>">
+    <input type="submit" value="Cập nhật mật khẩu">
+</form>
+<% } %> 
+<% if (locals.noti) { -%>
+    <p><%=noti%> </p>
+<% }-%>     
+<%- include('footer')%> 
